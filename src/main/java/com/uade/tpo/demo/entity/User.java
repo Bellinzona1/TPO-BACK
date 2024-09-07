@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+@NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username =: username")
+
+
 @Data
 @Entity
 @Builder
@@ -27,6 +31,13 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(name = "email")
+    private String email;
+
+
+    @Column(name = "role")
+    private String Role;
 
 
     @OneToMany(mappedBy = "user")

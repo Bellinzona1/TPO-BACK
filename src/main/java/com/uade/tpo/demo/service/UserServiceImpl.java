@@ -25,8 +25,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseEntity<User> createUser(User user) {
+    public User createUser(User user) {
         User savedUser = userRepository.save(user);
-        return ResponseEntity.ok(savedUser);
+        return savedUser;
     }
+
+    @Override
+    public User findByUsername(String username) {
+        User userFinded = userRepository.findByUsername(username);
+        return userFinded;
+    }
+
+
+
 }

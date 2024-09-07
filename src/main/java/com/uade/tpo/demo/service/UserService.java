@@ -12,5 +12,9 @@ public interface UserService {
 
     public Optional<User> getUser(Long id);
 
-    public ResponseEntity<User> createUser(User user);
+    public User createUser(User user);
+
+    public User findByUsername(String username);
+
+
 }
