@@ -4,6 +4,7 @@ package com.uade.tpo.demo.controllers;
 import com.uade.tpo.demo.entity.Article;
 import com.uade.tpo.demo.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +31,23 @@ public class ArticleController {
     public ResponseEntity<Article> addArticle(@RequestBody Article article) {
         Article createdArticle = articleService.addArticle(article).getBody();
         return ResponseEntity.ok(createdArticle);
+    }
+
+    @PutMapping("/EditArticle/{id}")
+    public ResponseEntity<Article> editArticle(@PathVariable Long id, @RequestBody Article article) {
+        Optional<Article> articleOptional = articleService.getArticleById(id);
+        if (articleOptional.isPresent()) {
+            Article articleToEdit = articleOptional.get();
+
+            articleToEdit.setName(article.getName());
+            articleToEdit.setCategory(article.getCategory());
+            articleToEdit.setContent(article.getContent());
+
+            Article articleEdited = articleService.updateArticle(articleToEdit).getBody();
+            return ResponseEntity.ok(articleEdited);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
     }
 }

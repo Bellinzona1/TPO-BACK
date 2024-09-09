@@ -16,5 +16,7 @@ public interface UserService {
 
     public User findByUsername(String username);
 
+    public ResponseEntity<User> updateUser(User user);
+
 
 }

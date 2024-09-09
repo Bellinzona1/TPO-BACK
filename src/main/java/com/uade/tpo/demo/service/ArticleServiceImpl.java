@@ -1,6 +1,7 @@
 package com.uade.tpo.demo.service;
 
 import com.uade.tpo.demo.entity.Article;
+import com.uade.tpo.demo.entity.User;
 import com.uade.tpo.demo.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,11 @@ public class ArticleServiceImpl implements ArticleService {
     public ResponseEntity<Article> addArticle(Article article) {
         Article createdArticle = articleRepository.save(article);
         return ResponseEntity.ok(createdArticle);
+    }
+
+    @Override
+    public ResponseEntity<Article> updateArticle(Article article) {
+        articleRepository.save(article);
+        return ResponseEntity.ok(article);
     }
 }

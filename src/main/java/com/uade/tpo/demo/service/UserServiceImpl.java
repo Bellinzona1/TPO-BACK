@@ -36,6 +36,30 @@ public class UserServiceImpl implements UserService {
         return userFinded;
     }
 
+    @Override
+    public ResponseEntity<User> updateUser(User user) {
+        Optional<User> existingUser = userRepository.findById(user.getId());
+
+        if (existingUser.isPresent()) {
+            User userToUpdate = existingUser.get();
+
+            // Actualizar los campos necesarios
+            userToUpdate.setUsername(user.getUsername());
+            userToUpdate.setEmail(user.getEmail());
+            userToUpdate.setPassword(user.getPassword());
+            userToUpdate.setRole(user.getRole());
+
+            // Guardar el usuario actualizado
+            User updatedUser = userRepository.save(userToUpdate);
+
+            // Retornar el usuario actualizado
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            // Si el usuario no existe, retornar 404
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 }

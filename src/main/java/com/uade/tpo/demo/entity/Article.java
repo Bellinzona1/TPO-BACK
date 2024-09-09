@@ -21,15 +21,21 @@ public class Article {
 
     @Column
     private String name;
+
+    @Column
     private String content;
 
-
+    // Relación con User
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "user-article")
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-
-
+    // Relación con Category
+    @ManyToOne
+    @JsonBackReference(value = "category-article")
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
 }
+

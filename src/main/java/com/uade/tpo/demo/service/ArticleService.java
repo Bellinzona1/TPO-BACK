@@ -1,6 +1,7 @@
 package com.uade.tpo.demo.service;
 
 import com.uade.tpo.demo.entity.Article;
+import com.uade.tpo.demo.entity.User;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
@@ -13,4 +14,6 @@ public interface ArticleService {
     public Optional getArticleById(Long id);
 
     public ResponseEntity<Article> addArticle(Article article);
+
+    public ResponseEntity<Article> updateArticle(Article article);
 }

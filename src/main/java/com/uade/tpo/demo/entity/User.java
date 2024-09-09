@@ -41,7 +41,7 @@ public class User {
 
 
     @OneToMany(mappedBy = "user")
-    @JsonManagedReference
+    @JsonManagedReference(value = "user-article")
     private List<Article> articles;
 
 
