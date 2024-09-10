@@ -36,11 +36,21 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
-    public Optional deleteCategoryById(Long id){
+    public ResponseEntity<String> deleteCategoryById(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
-        if(category.isPresent()){
+
+        if (category.isPresent()) {
             categoryRepository.delete(category.get());
+            return ResponseEntity.ok("Category deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Category not found.");
         }
-        return null;
+    }
+
+
+    @Override
+    public ResponseEntity<Category> updateCategory(Category category) {
+        categoryRepository.save(category);
+        return ResponseEntity.ok(category);
     }
 }

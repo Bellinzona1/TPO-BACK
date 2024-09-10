@@ -16,6 +16,10 @@ public interface UserService {
 
     public User findByUsername(String username);
 
+    public User findByEmail(String email);
+
+    public ResponseEntity<String> deleteUserById(Long id);
+
     public ResponseEntity<User> updateUser(User user);
 
 

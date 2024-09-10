@@ -25,7 +25,7 @@ public class Category {
     private String name;
 
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "category-article")
     private List<Article> articleList;
 

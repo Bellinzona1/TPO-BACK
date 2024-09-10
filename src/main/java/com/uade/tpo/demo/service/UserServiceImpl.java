@@ -1,8 +1,10 @@
 package com.uade.tpo.demo.service;
 
+import com.uade.tpo.demo.entity.Article;
 import com.uade.tpo.demo.entity.User;
 import com.uade.tpo.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -37,25 +39,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByEmail(String email) {
+        User userFinded = userRepository.findByEmail(email);
+        return userFinded;
+        }
+
+    @Override
+    public ResponseEntity<String> deleteUserById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+
+        if (user.isPresent()) {
+            userRepository.delete(user.get());
+            return ResponseEntity.ok("article deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("article not found.");
+        }
+    }
+
+    @Override
     public ResponseEntity<User> updateUser(User user) {
         Optional<User> existingUser = userRepository.findById(user.getId());
 
         if (existingUser.isPresent()) {
             User userToUpdate = existingUser.get();
 
-            // Actualizar los campos necesarios
             userToUpdate.setUsername(user.getUsername());
             userToUpdate.setEmail(user.getEmail());
             userToUpdate.setPassword(user.getPassword());
             userToUpdate.setRole(user.getRole());
 
-            // Guardar el usuario actualizado
             User updatedUser = userRepository.save(userToUpdate);
 
-            // Retornar el usuario actualizado
             return ResponseEntity.ok(updatedUser);
         } else {
-            // Si el usuario no existe, retornar 404
             return ResponseEntity.notFound().build();
         }
     }

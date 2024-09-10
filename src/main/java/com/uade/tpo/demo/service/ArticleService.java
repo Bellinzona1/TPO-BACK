@@ -16,4 +16,6 @@ public interface ArticleService {
     public ResponseEntity<Article> addArticle(Article article);
 
     public ResponseEntity<Article> updateArticle(Article article);
+
+    public ResponseEntity<String> deleteArticleById(Long id);
 }

@@ -30,6 +30,15 @@ public class User {
     private String username;
 
     @Column(nullable = false)
+    private String firstname;
+
+    @Column(nullable = false)
+    private String surname;
+
+    @Column(nullable = true)
+    private String phone_number;
+
+    @Column(nullable = false)
     private String password;
 
     @Column(name = "email")
@@ -40,7 +49,7 @@ public class User {
     private String Role;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-article")
     private List<Article> articles;
 

@@ -25,13 +25,17 @@ public class Article {
     @Column
     private String content;
 
-    // Relación con User
+    @Column
+    private boolean onSale;
+
+    @Column
+    private int price;
+
     @ManyToOne
     @JsonBackReference(value = "user-article")
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // Relación con Category
     @ManyToOne
     @JsonBackReference(value = "category-article")
     @JoinColumn(name = "category_id", nullable = false)

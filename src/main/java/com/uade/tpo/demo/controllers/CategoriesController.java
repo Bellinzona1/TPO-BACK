@@ -36,8 +36,26 @@ public class CategoriesController {
 
     }
 
-    @DeleteMapping("/id")
-    public Optional deleteCategory(@RequestBody Long id) {
+
+    @PutMapping("/editCategory/{id}")
+    public ResponseEntity<Category> EditCategory(@PathVariable Long id, @RequestBody Category category) {
+        Optional<Category> categoryOptional = categoryService.getCategoryById(id);
+        if (categoryOptional.isPresent()) {
+            Category categoryEdit = categoryOptional.get();
+
+            categoryEdit.setName(category.getName());
+
+
+            Category categoryEdited = categoryService.updateCategory(categoryEdit).getBody();
+            return ResponseEntity.ok(categoryEdited);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
         return categoryService.deleteCategoryById(id);
     }
 

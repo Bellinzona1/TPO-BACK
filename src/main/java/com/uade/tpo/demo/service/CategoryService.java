@@ -1,5 +1,6 @@
 package com.uade.tpo.demo.service;
 
+import com.uade.tpo.demo.entity.Article;
 import com.uade.tpo.demo.entity.Category;
 import org.springframework.http.ResponseEntity;
 
@@ -14,6 +15,8 @@ public interface CategoryService {
 
     public ResponseEntity<Category> postCategory(Category category);
 
-    public Optional deleteCategoryById(Long id);
+    public ResponseEntity<String> deleteCategoryById(Long id);
+
+    public ResponseEntity<Category> updateCategory(Category category);
 
 }

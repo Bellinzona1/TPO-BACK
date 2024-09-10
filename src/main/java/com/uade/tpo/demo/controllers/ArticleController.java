@@ -50,4 +50,11 @@ public class ArticleController {
         }
 
     }
+
+
+    @DeleteMapping("/DeleteArticle/{id}")
+    public ResponseEntity<String> deleteArticle(@PathVariable Long id) {
+        return articleService.deleteArticleById(id);
+
+    }
 }
