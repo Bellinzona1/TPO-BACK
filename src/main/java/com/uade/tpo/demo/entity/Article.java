@@ -29,6 +29,9 @@ public class Article {
     private boolean onSale;
 
     @Column
+    private String image;
+
+    @Column
     private int price;
 
     @ManyToOne

@@ -35,7 +35,5 @@ public class CustomerDetailsService implements UserDetailsService {
         }
     }
 
-    public User getUserDetail() {
-        return userDetail;
-    }
+
 }
