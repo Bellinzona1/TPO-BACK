@@ -2,7 +2,9 @@ package com.uade.tpo.demo.controllers;
 
 import com.uade.tpo.demo.entity.User;
 import com.uade.tpo.demo.jwt.JwtUtil;
+import com.uade.tpo.demo.request.AuthResponse;
 import com.uade.tpo.demo.request.LoginRequest;
+import com.uade.tpo.demo.request.UserAplication;
 import com.uade.tpo.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
+@CrossOrigin
 @RestController
 @RequestMapping("User")
 public class UserController {
@@ -80,21 +82,21 @@ public class UserController {
         String token = jwtUtil.generateToken(createdUser.getUsername(), createdUser.getRole());
 
 
-        return ResponseEntity.ok(new AuthResponse(token));
+        return ResponseEntity.ok(new AuthResponse(token, user.getUsername()));
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
-
         User user = userService.findByUsername(loginRequest.getUsername());
-        if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
 
+        if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
             String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
 
+            // Crear AuthResponse con el token y el nombre de usuario
+            AuthResponse authResponse = new AuthResponse(token, user.getUsername());
 
-            return ResponseEntity.ok(new AuthResponse(token));
+            return ResponseEntity.ok(authResponse);
         } else {
-
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
@@ -107,24 +109,6 @@ public class UserController {
 
     }
 
-
-
-    // Clase para encapsular la respuesta con el token
-    public class AuthResponse {
-        private String token;
-
-        public AuthResponse(String token) {
-            this.token = token;
-        }
-
-        public String getToken() {
-            return token;
-        }
-
-        public void setToken(String token) {
-            this.token = token;
-        }
-    }
 
 
 

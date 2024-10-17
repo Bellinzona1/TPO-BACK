@@ -24,6 +24,9 @@ public class Category {
     @Column
     private String name;
 
+    @Column
+    private  String image;
+
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference(value = "category-article")
