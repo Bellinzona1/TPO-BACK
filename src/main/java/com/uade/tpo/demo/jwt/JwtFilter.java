@@ -32,7 +32,7 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        if (request.getServletPath().equals("/User/Register") || request.getServletPath().equals("/User/login")) {
+        if (request.getServletPath().equals("/User/Register") || request.getServletPath().equals("/User/login") || request.getServletPath().equals("/Article/") || request.getServletPath().equals("/categories/")) {
             filterChain.doFilter(request, response);
             return;
         }
