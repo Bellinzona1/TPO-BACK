@@ -1,6 +1,5 @@
 package com.uade.tpo.demo.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,19 +10,17 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
-@NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username =: username")
-
+@NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
 
 @Data
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Cambié a IDENTITY
     private long id;
 
     @Column(nullable = false)
@@ -44,18 +41,10 @@ public class User {
     @Column(name = "email")
     private String email;
 
-
     @Column(name = "role")
-    private String Role;
-
+    private String role;  // Cambié el nombre a minúscula (role)
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-article")
     private List<Article> articles;
-
-
-
-
-
-
 }
