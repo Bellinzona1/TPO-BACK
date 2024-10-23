@@ -1,5 +1,6 @@
 package com.uade.tpo.demo.service;
 
+import com.uade.tpo.demo.dto.CheckoutRequest;
 import com.uade.tpo.demo.entity.Article;
 import com.uade.tpo.demo.entity.User;
 import com.uade.tpo.demo.repository.UserRepository;
@@ -76,6 +77,20 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public ResponseEntity<Void> checkout(CheckoutRequest checkoutRequest) {
+        System.out.println("Items del carrito:");
+        checkoutRequest.getCartItems().forEach(item ->
+                System.out.println(item.getName() + " - Cantidad: " + item.getQuantity() + " - Precio: $" + item.getPrice())
+        );
+        System.out.println("Descuento aplicado: " + checkoutRequest.getDiscountApplied());
+        System.out.println("Total: $" + checkoutRequest.getTotal());
+
+        // Retornar un 200 OK
+        return ResponseEntity.ok().build();
+    }
+
+    }
 
 
-}
+

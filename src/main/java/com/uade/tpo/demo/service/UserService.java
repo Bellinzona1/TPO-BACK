@@ -22,5 +22,10 @@ public interface UserService {
 
     public ResponseEntity<User> updateUser(User user);
 
+    public ResponseEntity<Void> checkout(com.uade.tpo.demo.dto.CheckoutRequest checkoutRequest);
+
+
+
+
 
 }

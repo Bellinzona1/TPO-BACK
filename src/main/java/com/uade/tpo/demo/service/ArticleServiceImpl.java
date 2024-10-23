@@ -37,7 +37,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ResponseEntity<Article> updateArticle(Article article) {
+    public ResponseEntity<Article> updateArticle(Article article) { 
         articleRepository.save(article);
         return ResponseEntity.ok(article);
     }
