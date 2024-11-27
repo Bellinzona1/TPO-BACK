@@ -2,6 +2,7 @@ package com.uade.tpo.demo.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,9 +41,10 @@ public class Article {
     private User user;
 
     @ManyToOne
-    @JsonBackReference(value = "category-article")
+    @JsonManagedReference(value = "category-article")
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
 
 }
 
