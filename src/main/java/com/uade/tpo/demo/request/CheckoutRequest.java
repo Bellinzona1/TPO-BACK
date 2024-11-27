@@ -1,4 +1,4 @@
-package com.uade.tpo.demo.dto;
+package com.uade.tpo.demo.request;
 
 import com.uade.tpo.demo.request.CheckoutItem;
 

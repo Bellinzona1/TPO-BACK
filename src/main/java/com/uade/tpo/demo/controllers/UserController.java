@@ -1,9 +1,11 @@
 package com.uade.tpo.demo.controllers;
 
-import com.uade.tpo.demo.dto.CheckoutRequest;
+
 import com.uade.tpo.demo.entity.User;
 import com.uade.tpo.demo.jwt.JwtUtil;
 import com.uade.tpo.demo.request.AuthResponse;
+import com.uade.tpo.demo.request.CheckoutItem;
+import com.uade.tpo.demo.request.CheckoutRequest;
 import com.uade.tpo.demo.request.LoginRequest;
 import com.uade.tpo.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

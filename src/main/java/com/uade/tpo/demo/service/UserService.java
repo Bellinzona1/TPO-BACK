@@ -1,6 +1,7 @@
 package com.uade.tpo.demo.service;
 
 import com.uade.tpo.demo.entity.User;
+import com.uade.tpo.demo.request.CheckoutRequest;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public interface UserService {
 
     public ResponseEntity<User> updateUser(User user);
 
-    public ResponseEntity<Void> checkout(com.uade.tpo.demo.dto.CheckoutRequest checkoutRequest);
+    public ResponseEntity<Void> checkout(CheckoutRequest checkoutRequest);
 
 
 

@@ -1,9 +1,11 @@
 package com.uade.tpo.demo.service;
 
-import com.uade.tpo.demo.dto.CheckoutRequest;
+
 import com.uade.tpo.demo.entity.Article;
 import com.uade.tpo.demo.entity.User;
 import com.uade.tpo.demo.repository.UserRepository;
+import com.uade.tpo.demo.request.CheckoutItem;
+import com.uade.tpo.demo.request.CheckoutRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
